@@ -48,7 +48,7 @@ class LibraryRecord : public ArrayBag<Book>
             "[title_] is written by [author_]. Page Count: [page_count_]. [It is / It is not] available digitally.\n
             It has been checked out [_] times."
     **/
-    void display() const;
+    void display();
 
     /**
     @post:    Prints the title of each Book in the LibraryRecord
@@ -64,7 +64,7 @@ class LibraryRecord : public ArrayBag<Book>
     @post:      Duplicates all the items in the LibraryRecord
     Example: we originally have [book1, book2] and after duplication we have [book1, book2, book1, book2]
     */
-    bool duplicateStock() const;
+    bool duplicateStock();
 
 
     /**
