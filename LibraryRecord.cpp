@@ -54,12 +54,15 @@ void LibraryRecord::display()
 void LibraryRecord::displayTitles() const
 {
     std::string display_titles = "";
-    for(std::size_t i = 0; i < checked_out_.size(); i++)
+    for(int i = 0; i < getCurrentSize(); i++)
     {
-        display_titles + checked_out_[i].getTitle();//adds the name of the title of each book in the checked out list
-        display_titles + ", ";//adds a comma to each title
+        display_titles += items_[i].getTitle();//adds the name of the title of each book in the checked out list
+        if(i != getCurrentSize() - 1)
+        {
+        display_titles += ", ";//adds a comma to each title
+        }
     }
-    display_titles + "!";//adds a exclaimation mark once the loop is done to end the string
+    display_titles += "!";//adds a exclaimation mark once the loop is done to end the string
     std::cout << display_titles;
 }
 
@@ -70,19 +73,22 @@ bool LibraryRecord::duplicateStock()
         return false;
     }
     int starting_item_count = item_count_;
-    for(int i = 0; i < (DEFAULT_CAPACITY - item_count_); i++)//loop through items
+    for(int i = 0; i < starting_item_count; i++)//loop through items
     {
-            bool add_item = add(items_[i]);
-            if(add_item)
-            {
+        bool add_item = add(items_[i]);
+        if(add_item)
+        {
             item_count_++;
-            }
+        }
     }
     if(item_count_ == (2 * starting_item_count))
     {
         return true;
     }
+    else
+    {
         return false;
+    }
 }
 
 bool LibraryRecord::removeStock(const Book &book)
