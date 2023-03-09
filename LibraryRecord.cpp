@@ -15,10 +15,7 @@ bool LibraryRecord::checkIn(const Book &book)
     {
         return true;
     }
-    else
-    {
-        return false;
-    }
+    return false;
 }
 
 bool LibraryRecord::checkOut(const Book &book)
@@ -26,13 +23,10 @@ bool LibraryRecord::checkOut(const Book &book)
     bool remove_book = remove(book);//removes book using arraybag remove method and obtains whether it is removed or not
     if(remove_book)
     {
-        return true;
         checked_out_.push_back(book);//adds the removed book to the list of removed books
+        return true;
     }
-    else
-    {
-        return false;
-    }
+    return false;
 }
 
 int LibraryRecord::getCheckOutHistory(const Book &book)
@@ -48,7 +42,7 @@ int LibraryRecord::getCheckOutHistory(const Book &book)
     return counter;
 }
 
-void LibraryRecord::display()
+void LibraryRecord::display() 
 {
     for(int i = 0; i < getCurrentSize(); i++)
     {
@@ -71,12 +65,12 @@ void LibraryRecord::displayTitles() const
 
 bool LibraryRecord::duplicateStock() 
 {
-    if(item_count_ * 2 > 10)//if duplicating stock is greater than maximum space, return false
+    if(item_count_ * 2 > DEFAULT_CAPACITY)//if duplicating stock is greater than maximum space, return false
     {
         return false;
     }
     int starting_item_count = item_count_;
-    for(int i = 0; i < (10 - item_count_); i++)//loop through items
+    for(int i = 0; i < (DEFAULT_CAPACITY - item_count_); i++)//loop through items
     {
             bool add_item = add(items_[i]);
             if(add_item)
@@ -88,10 +82,7 @@ bool LibraryRecord::duplicateStock()
     {
         return true;
     }
-    else
-    {
         return false;
-    }
 }
 
 bool LibraryRecord::removeStock(const Book &book)
@@ -151,7 +142,6 @@ void LibraryRecord::operator+=(LibraryRecord &record)
             return;
         }
         add(record.items_[i]);
-        //int history = ;
         for(int j = 0; j < record.getCheckOutHistory(record.items_[i]); j++)
         {
             checked_out_.push_back(record.items_[i]);
