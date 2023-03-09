@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Book.hpp"
+#include "LibraryRecord.hpp"
 
 int main() {
     std::cout << "TEST 1: TEST DEFAULT CONSTRUCTOR & ACCESSORS" << std::endl;
@@ -47,10 +48,17 @@ int main() {
 
     if(my_book1 == my_book2)
     {
-        std::cout << "Books are the same";
+        std::cout << "Books are the same\n";
     }
     else
     {
-        std::cout << "Book are different";
+        std::cout << "Book are different\n";
     }
+    my_book1.display();
+    LibraryRecord record1;
+    std::cout << record1.checkIn(my_book1);
+    record1.checkIn(my_book2);
+    record1.checkIn(my_book3);
+    std::cout << record1.checkOut(my_book1);
+    std::cout << record1.getCheckOutHistory(my_book1);
 }
