@@ -93,7 +93,7 @@ class LibraryRecord : public ArrayBag<Book>
         book4 is in LibraryRecord2 and has been checked out 2 times, then it should still be checked out 2 times in LibraryRecord1 after the += operation
         Hint: use getCheckOutHistory and the checkout history vector
     */
-    void operator+=(const LibraryRecord &record);
+    void operator+=(LibraryRecord &record);
     
     /** @param:   A reference to another LibraryRecord object
         @post:    Combines the contents from both LibraryRecord objects, EXCLUDING duplicates.
@@ -103,7 +103,7 @@ class LibraryRecord : public ArrayBag<Book>
         book4 is in LibraryRecord2 and has been checked out 2 times, then it should still be checked out 2 times in LibraryRecord1 after the /= operation
         Hint: use getCheckOutHistory and the checkout history vector
     */
-    void operator/=(const LibraryRecord &record);
+    void operator/=(LibraryRecord &record);
 };
 
 #endif
