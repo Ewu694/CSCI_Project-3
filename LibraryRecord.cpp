@@ -93,23 +93,14 @@ bool LibraryRecord::duplicateStock()
 
 bool LibraryRecord::removeStock(const Book &book)
 {
-    if(contains(book) == false)
-    {
-        return false;
-    }
-    else
-    {
+    bool stock_removed = false;
     for(int i = 0; i < item_count_; i++)
-    {
-        if(items_[i] == book)
+        if(remove(items_[i]))
         {
-            remove(items_[i]);
+            stock_removed = true;
         }
     }
-    return true;
-    }
-}
-
+    return stock_removed;
 bool LibraryRecord::equivalentRecords(const LibraryRecord &record)
 {
     if(getCurrentSize() != record.getCurrentSize())
