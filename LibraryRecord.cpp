@@ -46,8 +46,8 @@ void LibraryRecord::display()
 {
     for(int i = 0; i < getCurrentSize(); i++)
     {
-        checked_out_[i].display();
-        std::cout << "\nIt has been checked out " << getCheckOutHistory(checked_out_[i]) << " times.";//uses book method display to get title, author, page count and digital, and then uses getcheckedouthistory to print the number of times a book has been checked out
+        items_[i].display();
+        std::cout << "It has been checked out " << getCheckOutHistory(items_[i]) << " times. \n";//uses book method display to get title, author, page count and digital, and then uses getcheckedouthistory to print the number of times a book has been checked out
     }
 }
 
