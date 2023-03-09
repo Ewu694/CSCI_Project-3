@@ -90,7 +90,7 @@ class Book{
   		- They must either be both digital or both not
 		operator==
 		**/
-		bool operator==(const Book &book);
+		bool operator==(const Book &book)const;
 		/**	
   		@param     : A reference to the right hand side of the != operator.
   		@return     : Returns true if the right hand side book is NOT identical (!=), false otherwise.
@@ -98,7 +98,7 @@ class Book{
   		Note: ALL attributes must be equal for two books to be deemed equal.
 		operator!=
 		**/
-		bool operator!=(const Book &book);
+		bool operator!=(const Book &book) const;
 		/**
   		@post     : displays Book data in the form:
   		"[title_] is written by [author_]. Page Count: [page_count_]. [It is / It is not] available digitally.\n"     
