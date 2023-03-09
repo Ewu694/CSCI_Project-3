@@ -87,20 +87,22 @@ void Book::setDigital(){
   is_digital_ = true;
 }
 
-bool Book::operator==(const Book &book)//allows the == operator to be used on book objects to test for equality.
+bool Book::operator==(const Book &book) const //allows the == operator to be used on book objects to test for equality.
 {
   if((book.getTitle() == title_) && (book.getAuthor() == author_) && (book.getPageCount() == page_count_) && (book.isDigital() == is_digital_))//tests to see if the object contains the same private variables
   {
     return true;//if correct, then they are equal
   }
+  return false;
 }
 
-bool Book::operator!=(const Book &book)//allows the != operator to be used on book objects to test for inequality.
+bool Book::operator!=(const Book &book) const//allows the != operator to be used on book objects to test for inequality.
 {
   if((book.getTitle() != title_) || (book.getAuthor() != author_) || (book.getPageCount() != page_count_) || (book.isDigital() != is_digital_))//tests to see if any of the private members are differnet
   {
-    return false;//if they are different, return false
+    return true;//if they are different, return false
   }
+  return false;
 }
 
 void Book::display() const
