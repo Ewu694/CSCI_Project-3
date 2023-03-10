@@ -75,11 +75,7 @@ bool LibraryRecord::duplicateStock()
     int starting_item_count = item_count_;
     for(int i = 0; i < starting_item_count; i++)//loop through items
     {
-        bool add_item = add(items_[i]);
-        if(add_item)
-        {
-            item_count_++;
-        }
+        add(items_[i]);
     }
     if(item_count_ == (2 * starting_item_count))
     {
@@ -99,8 +95,8 @@ bool LibraryRecord::removeStock(const Book &book)
         {
             stock_removed = true;
         }
-    }
     return stock_removed;
+}
 bool LibraryRecord::equivalentRecords(const LibraryRecord &record)
 {
     if(getCurrentSize() != record.getCurrentSize())
