@@ -91,7 +91,7 @@ bool LibraryRecord::removeStock(const Book &book)
 {
     bool stock_removed = false;
     for(int i = 0; i < item_count_; i++)
-        if(remove(items_[i]))
+        if(remove(book))
         {
             stock_removed = true;
         }
