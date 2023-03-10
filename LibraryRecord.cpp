@@ -91,15 +91,15 @@ bool LibraryRecord::removeStock(const Book &book)
 {
     bool stock_removed = false;
     for(int i = 0; i < item_count_; i++)
-        if(remove(book))
+        if(remove(book))//checks to see if book is removable, and then removes it whenever it is found
         {
-            stock_removed = true;
+            stock_removed = true;//once removed the first time, variable is set to true and will be returned at the end of loop.
         }
     return stock_removed;
 }
 bool LibraryRecord::equivalentRecords(const LibraryRecord &record)
 {
-    if(getCurrentSize() != record.getCurrentSize())
+    if(getCurrentSize() != record.getCurrentSize())//if the current size is not the same as the records size, then return false
     {
         return false;
     }
@@ -107,7 +107,7 @@ bool LibraryRecord::equivalentRecords(const LibraryRecord &record)
     {
         int counter = 0;
         int i = 0;
-        while(counter != record.getCurrentSize())
+        while(counter != record.getCurrentSize())//uses counter to loop through record to see if each item is contained within the other.
         {
             if(contains(record.items_[i]))
             {
@@ -115,14 +115,12 @@ bool LibraryRecord::equivalentRecords(const LibraryRecord &record)
                 i++;
             }
         }
-        if(counter == record.getCurrentSize())
+        if(counter == record.getCurrentSize())//if the counter has the same size of record after using the while loop to check for contain, return true, else false.
         {
             return true;
         }
         else
-        {
             return false;
-        }
     }
 }
 
@@ -130,12 +128,12 @@ void LibraryRecord::operator+=(LibraryRecord &record)
 {
     for(int i = 0; i < record.getCurrentSize(); i++)
     {
-        if(item_count_ == DEFAULT_CAPACITY)
+        if(item_count_ == DEFAULT_CAPACITY)//if over default capacity, return false
         {
             return;
         }
-        add(record.items_[i]);
-        for(int j = 0; j < record.getCheckOutHistory(record.items_[i]); j++)
+        add(record.items_[i]);//else add the the item 
+        for(int j = 0; j < record.getCheckOutHistory(record.items_[i]); j++)//loops through getcheckouthistory of the record book items and then pushes it back into the checked out vector.
         {
             checked_out_.push_back(record.items_[i]);
         }
@@ -146,15 +144,15 @@ void LibraryRecord::operator/=(LibraryRecord &record)
 {
     for(int i = 0; i < record.getCurrentSize(); i++)
     {
-        if(item_count_ == DEFAULT_CAPACITY)
+        if(item_count_ == DEFAULT_CAPACITY)//if over the default capacity, return and terminate
         {
             return;
         }
-        else if(!contains(record.items_[i]))
+        else if(!contains(record.items_[i]))//if there is no duplicate after using contain, add the item in
         {
             add(record.items_[i]);
         }
-        for(int j = 0; j < record.getCheckOutHistory(record.items_[i]); j++)
+        for(int j = 0; j < record.getCheckOutHistory(record.items_[i]); j++)//loops through getcheckouthistory of the record book items and then pushes it back into the checked out vector.
         {
             checked_out_.push_back(record.items_[i]);
         }
